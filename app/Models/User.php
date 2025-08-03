@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nomor_telpon'
     ];
 
     /**
@@ -32,6 +34,15 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+/**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $with = [
+        'roles',
+
+    ];
 
     /**
      * The attributes that should be cast.
@@ -42,4 +53,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function guru()
+    {
+        return $this->hasOne(Guru::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($sekolah) {
+            $sekolah->uuid = Str::uuid();
+        });
+    }
+
 }

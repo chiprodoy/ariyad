@@ -1,21 +1,25 @@
+import TopNavbar from '@/Components/Navbar';
+import Sidebar from '@/Components/SideBar';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import { Navbar } from 'react-bootstrap';
 
 export default function Dashboard({ auth }) {
+      const role = 'admin'; // bisa didapat dari context / auth storage
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
-        >
-            <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">You're logged in!</div>
-                    </div>
-                </div>
-            </div>
-        </AuthenticatedLayout>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <Sidebar role={'admin'} />
+      <div style={{ flex: 1 }}>
+              <div className="flex-grow-1"></div>
+              <TopNavbar />
+        <main>
+          <div className="p-4">
+            <h2>Dashboard</h2>
+            <p>Selamat datang di halaman admin.</p>
+          </div>
+        </main>
+      </div>
+    </div>
     );
 }
