@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\JenisMataPelajaranController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\KelompokMataPelajaranController;
+use App\Http\Controllers\Admin\MataPelajaranController;
 use App\Http\Controllers\Admin\SekolahController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TahunAjaranController;
@@ -76,6 +77,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('tahun_ajaran', TahunAjaranController::class);
         Route::resource('jenis_mata_pelajaran', JenisMataPelajaranController::class);
         Route::resource('kelompok_mata_pelajaran', KelompokMataPelajaranController::class);
+        Route::resource('mata_pelajaran', MataPelajaranController::class);
 
     });
 });
