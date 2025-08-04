@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\JenisMataPelajaranController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\SekolahController;
 use App\Http\Controllers\Admin\SiswaController;
@@ -72,6 +73,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('siswa', SiswaController::class);
         Route::resource('kelas', KelasController::class);
         Route::resource('tahun_ajaran', TahunAjaranController::class);
+        Route::resource('jenis_mata_pelajaran', JenisMataPelajaranController::class);
 
     });
 });
