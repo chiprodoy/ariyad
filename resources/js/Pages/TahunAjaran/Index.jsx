@@ -3,24 +3,24 @@ import Layout from '@/Layouts/AdminLayout';
 import { useForm, usePage, Link } from '@inertiajs/react';
 
 export default function Index() {
-    const { siswas, sekolahs, filters,auth } = usePage().props;
+    const { tahun_ajarans, filters,auth } = usePage().props;
     const { data, setData, get } = useForm({
         search: filters.search || '',
     });
 
     const handleSearch = (e) => {
         e.preventDefault();
-        get(route('siswa.index'), { preserveScroll: true });
+        get(route('tahun_ajaran.index'), { preserveScroll: true });
     };
 
     return (
         <Layout>
             <div className="p-4">
-                <h1 className="text-2xl font-bold mb-4">Daftar Siswa</h1>
+                <h1 className="text-2xl font-bold mb-4">Daftar Tahun Ajaran</h1>
                     {/* Filter */}
                     <form onSubmit={handleSearch} className="mb-4 flex gap-2 items-end">
                         <div>
-                            <label className="block text-sm">Nama / NIS</label>
+                            <label className="block text-sm">Tahun</label>
                             <input
                                 type="text"
                                 value={data.search}
@@ -37,10 +37,10 @@ export default function Index() {
                             Cari
                         </button>
                         <Link
-                            href={route('siswa.create')}
+                            href={route('tahun_ajaran.create')}
                             className="ml-auto btn btn-success"
                         >
-                            Tambah Siswa
+                            Tambah Tahun Ajaran
                         </Link>
                     </form>
 
@@ -50,22 +50,26 @@ export default function Index() {
                             <thead>
                                 <tr className="bg-gray-200">
                                     <th className="border px-2 py-1">#</th>
-                                    <th className="border px-2 py-1">NIS</th>
-                                    <th className="border px-2 py-1">Nama</th>
-                                    <th className="border px-2 py-1">NISN</th>
+                                    <th className="border px-2 py-1">Tahun Ajaran</th>
+                                    <th className="border px-2 py-1">Semester</th>
+                                    <th className="border px-2 py-1">Tgl Mulai</th>
+                                    <th className="border px-2 py-1">Tgl Akhir</th>
+                                    <th className="border px-2 py-1">Aktif</th>
                                     <th className="border px-2 py-1">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {siswas.data.map((siswa, i) => (
-                                    <tr key={siswa.id}>
-                                        <td className="border px-2 py-1">{siswas.from + i}</td>
-                                        <td className="border px-2 py-1">{siswa.nis}</td>
-                                        <td className="border px-2 py-1">{siswa.nama_siswa}</td>
-                                        <td className="border px-2 py-1">{siswa.nisn}</td>
+                                {tahun_ajarans.data.map((tahun_ajaran, i) => (
+                                    <tr key={tahun_ajaran.id}>
+                                        <td className="border px-2 py-1">{tahun_ajarans.from + i}</td>
+                                        <td className="border px-2 py-1">{tahun_ajaran.tahun}</td>
+                                        <td className="border px-2 py-1">{tahun_ajaran.semester}</td>
+                                        <td className="border px-2 py-1">{tahun_ajaran.tgl_mulai}</td>
+                                        <td className="border px-2 py-1">{tahun_ajaran.tgl_akhir}</td>
+                                        <td className="border px-2 py-1">{tahun_ajaran.is_active}</td>
                                         <td className="border px-2 py-1 space-x-2">
                                             <Link
-                                                href={route('siswa.edit', siswa.id)}
+                                                href={route('tahun_ajaran.edit', tahun_ajaran.id)}
                                                 className="btn btn-warning btn-sm"
                                             >
                                                 Edit
@@ -73,9 +77,9 @@ export default function Index() {
                                             <Link
                                                 as="button"
                                                 method="delete"
-                                                href={route('siswa.destroy', siswa.id)}
+                                                href={route('tahun_ajaran.destroy', tahun_ajaran.id)}
                                                 className="btn btn-danger btn-sm"
-                                                onClick={e => confirm('Hapus siswa ini?') || e.preventDefault()}
+                                                onClick={e => confirm('Hapus tahun_ajaran ini?') || e.preventDefault()}
                                             >
                                                 Hapus
                                             </Link>
@@ -88,7 +92,7 @@ export default function Index() {
 
                     {/* Pagination */}
                     <div className="mt-4 flex flex-wrap gap-2">
-                        {siswas.links.map((link, index) => (
+                        {tahun_ajarans.links.map((link, index) => (
                             <Link
                                 key={index}
                                 href={link.url || '#'}

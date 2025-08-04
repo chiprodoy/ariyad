@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\SekolahController;
 use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -68,6 +70,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('sekolah', SekolahController::class);
         Route::resource('guru', GuruController::class);
         Route::resource('siswa', SiswaController::class);
+        Route::resource('kelas', KelasController::class);
+        Route::resource('tahun_ajaran', TahunAjaranController::class);
 
     });
 });

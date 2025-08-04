@@ -12,7 +12,7 @@ class Guru extends Model
 
     protected $fillable = ['nama', 'nip', 'user_id', 'sekolah_id'];
 
-    protected $with = ['user',];
+    protected $with = ['user'];
 
     public function user()
     {

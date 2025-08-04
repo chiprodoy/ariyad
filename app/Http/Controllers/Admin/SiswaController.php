@@ -11,7 +11,7 @@ use Inertia\Inertia;
 
 class SiswaController extends Controller
 {
-        public function index(Request $request)
+    public function index(Request $request)
     {
         $filters = $request->only(['search', 'sekolah_id']);
         $siswas = Siswa::with('user')
